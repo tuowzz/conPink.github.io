@@ -491,15 +491,18 @@
 
 <script>
   const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxvkT44c1V26IyzQW_4FhR4iQ0gmrNvdhF5TnneqNZ-21JXFczyZBo-8EFzhA69WshT/exec';
+  // สินค้าที่หมด: outOfStock: true (ถ้าอยากให้แสดงหมดให้เปลี่ยนเป็น false)
   const products = [
-    { id: 'B01', text: 'ตลับชมพู 01 - ผิวขาวเหลือง' },
-    { id: 'B02', text: 'ตลับชมพู 02 - ผิวสองสีขาวเหลือง' },
-    { id: 'B2.5', text: 'ตลับชมพู 2.5 - ผิวสองสีคล้ำ' },
-    { id: 'B03', text: 'ตลับชมพู 03 - ผิวคล้ำ' }
+    { id: 'B01', text: 'ตลับชมพู 01 - ผิวขาวเหลือง', outOfStock: false },
+    { id: 'B02', text: 'ตลับชมพู 02 - ผิวสองสีขาวเหลือง', outOfStock: true },
+    { id: 'B2.5', text: 'ตลับชมพู 2.5 - ผิวสองสีคล้ำ', outOfStock: false },   // ตัวนี้ "หมด" จะไม่แสดง
+    { id: 'B03', text: 'ตลับชมพู 03 - ผิวคล้ำ', outOfStock: false }
   ];
+
   // === เฉดสีหน้า card
   const optionsContainer = document.getElementById('optionsContainer');
   products.forEach(product => {
+    if (product.outOfStock) return; // ถ้าหมด ข้าม!
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'option-btn';
@@ -515,9 +518,11 @@
     };
     optionsContainer.appendChild(btn);
   });
+
   // === เฉดสีใน modal
   const modalOptionsContainer = document.getElementById('modalOptionsContainer');
   products.forEach(product => {
+    if (product.outOfStock) return; // ถ้าหมด ข้าม!
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'option-btn';
@@ -624,5 +629,6 @@
     });
   }
 </script>
+
 </body>
 </html>
