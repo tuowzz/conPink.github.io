@@ -489,140 +489,140 @@
     <span style="color:#222;font-weight:400;display:block;margin-top:7px;">เจ้าหน้าที่จะติดต่อกลับเพื่อยืนยันออเดอร์</span>
   </div>
 
-  <script>
-    const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxvkT44c1V26IyzQW_4FhR4iQ0gmrNvdhF5TnneqNZ-21JXFczyZBo-8EFzhA69WshT/exec';
-    const products = [
-      { id: 'B01', text: 'B01 - ผิวขาวเหลือง' },
-      { id: 'B02', text: 'B02 - ผิวสองสีขาวเหลือง' },
-      { id: 'B2.5', text: 'B2.5 - ผิวสองสีคล้ำ' },
-      { id: 'B03', text: 'B03 - ผิวคล้ำ' }
-    ];
-    // === เฉดสีหน้า card
-    const optionsContainer = document.getElementById('optionsContainer');
-    products.forEach(product => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'option-btn';
-      btn.textContent = product.text;
-      btn.dataset.value = `${product.text} - 390 บาท`;
-      btn.onclick = () => {
-        document.querySelectorAll('#optionsContainer .option-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        // sync ไป modal
-        document.querySelectorAll('#modalOptionsContainer .option-btn').forEach(b => b.classList.remove('selected'));
-        document.querySelector(`#modalOptionsContainer .option-btn[data-value="${btn.dataset.value}"]`).classList.add('selected');
-        document.getElementById('productInput').value = btn.dataset.value;
-      };
-      optionsContainer.appendChild(btn);
-    });
-    // === เฉดสีใน modal
-    const modalOptionsContainer = document.getElementById('modalOptionsContainer');
-    products.forEach(product => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'option-btn';
-      btn.textContent = product.text;
-      btn.dataset.value = `${product.text} - 390 บาท`;
-      btn.onclick = () => {
-        document.querySelectorAll('#modalOptionsContainer .option-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        // sync ไป product
-        document.querySelectorAll('#optionsContainer .option-btn').forEach(b => b.classList.remove('selected'));
-        document.querySelector(`#optionsContainer .option-btn[data-value="${btn.dataset.value}"]`).classList.add('selected');
-        document.getElementById('productInput').value = btn.dataset.value;
-      };
-      modalOptionsContainer.appendChild(btn);
-    });
+<script>
+  const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxvkT44c1V26IyzQW_4FhR4iQ0gmrNvdhF5TnneqNZ-21JXFczyZBo-8EFzhA69WshT/exec';
+  const products = [
+    { id: 'B01', text: 'ตลับชมพู 01 - ผิวขาวเหลือง' },
+    { id: 'B02', text: 'ตลับชมพู 02 - ผิวสองสีขาวเหลือง' },
+    { id: 'B2.5', text: 'ตลับชมพู 2.5 - ผิวสองสีคล้ำ' },
+    { id: 'B03', text: 'ตลับชมพู 03 - ผิวคล้ำ' }
+  ];
+  // === เฉดสีหน้า card
+  const optionsContainer = document.getElementById('optionsContainer');
+  products.forEach(product => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'option-btn';
+    btn.textContent = product.text;
+    btn.dataset.value = `${product.text} - 390 บาท`;
+    btn.onclick = () => {
+      document.querySelectorAll('#optionsContainer .option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      // sync ไป modal
+      document.querySelectorAll('#modalOptionsContainer .option-btn').forEach(b => b.classList.remove('selected'));
+      document.querySelector(`#modalOptionsContainer .option-btn[data-value="${btn.dataset.value}"]`).classList.add('selected');
+      document.getElementById('productInput').value = btn.dataset.value;
+    };
+    optionsContainer.appendChild(btn);
+  });
+  // === เฉดสีใน modal
+  const modalOptionsContainer = document.getElementById('modalOptionsContainer');
+  products.forEach(product => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'option-btn';
+    btn.textContent = product.text;
+    btn.dataset.value = `${product.text} - 390 บาท`;
+    btn.onclick = () => {
+      document.querySelectorAll('#modalOptionsContainer .option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      // sync ไป product
+      document.querySelectorAll('#optionsContainer .option-btn').forEach(b => b.classList.remove('selected'));
+      document.querySelector(`#optionsContainer .option-btn[data-value="${btn.dataset.value}"]`).classList.add('selected');
+      document.getElementById('productInput').value = btn.dataset.value;
+    };
+    modalOptionsContainer.appendChild(btn);
+  });
 
-    // Modal control
-    const buyNowModal = document.getElementById('buyNowModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const buyNowBtn = document.getElementById('buyNowBtn');
-    function openModal() {
-      buyNowModal.style.display = 'flex';
-      if (window.fbq) fbq('track', 'InitiateCheckout');
-      if (window.ttq) ttq.track('InitiateCheckout');
-      if (window.gtag) gtag('event', 'begin_checkout', {
-        value: 390.00,
-        currency: 'THB'
-      });
+  // Modal control
+  const buyNowModal = document.getElementById('buyNowModal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const buyNowBtn = document.getElementById('buyNowBtn');
+  function openModal() {
+    buyNowModal.style.display = 'flex';
+    if (window.fbq) fbq('track', 'InitiateCheckout');
+    if (window.ttq) ttq.track('InitiateCheckout');
+    if (window.gtag) gtag('event', 'begin_checkout', {
+      value: 390.00,
+      currency: 'THB'
+    });
+  }
+  function closeModal() { buyNowModal.style.display = 'none'; }
+  buyNowBtn.addEventListener('click', openModal);
+  closeModalBtn.addEventListener('click', closeModal);
+  buyNowModal.addEventListener('click', (event) => {
+    if (event.target === buyNowModal) { closeModal(); }
+  });
+
+  // LINE Button Tracking (Header + Footer)
+  function lineTrackingHandler() {
+    if(window.fbq) fbq('track', 'Contact');
+    if(window.ttq) ttq.track('Contact');
+  }
+  document.querySelectorAll('#addLineBtn, #addLineBtnFooter').forEach(el => {
+    if(el) el.addEventListener('click', lineTrackingHandler);
+  });
+
+  // Form submit
+  function sendOrderToSheet(event) {
+    event.preventDefault();
+    const orderForm = document.getElementById('orderForm');
+    const submitButton = document.getElementById('submitBtn');
+    const originalButtonText = submitButton.textContent;
+    if (!document.getElementById('productInput').value) {
+      alert('กรุณาเลือกเฉดสีก่อนค่ะ!');
+      return;
     }
-    function closeModal() { buyNowModal.style.display = 'none'; }
-    buyNowBtn.addEventListener('click', openModal);
-    closeModalBtn.addEventListener('click', closeModal);
-    buyNowModal.addEventListener('click', (event) => {
-      if (event.target === buyNowModal) { closeModal(); }
-    });
-
-    // LINE Button Tracking (Header + Footer)
-    function lineTrackingHandler() {
-      if(window.fbq) fbq('track', 'Contact');
-      if(window.ttq) ttq.track('Contact');
+    submitButton.disabled = true;
+    submitButton.textContent = 'กำลังส่งข้อมูล...';
+    const formData = new FormData(orderForm);
+    const phoneField = orderForm.querySelector('#phone');
+    if (phoneField && phoneField.value && !phoneField.value.startsWith("'")) {
+      formData.set('phone', "'" + phoneField.value);
     }
-    document.querySelectorAll('#addLineBtn, #addLineBtnFooter').forEach(el => {
-      if(el) el.addEventListener('click', lineTrackingHandler);
-    });
+    formData.set("order_id", 'ORD-' + Date.now());
+    fetch(GOOGLE_SHEET_WEB_APP_URL, {
+      method: "POST", body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+      if (data.result === 'success') {
+        closeModal();
+        orderForm.reset();
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        document.getElementById('productInput').value = '';
+        // Popup success
+        const successPopup = document.getElementById('successPopup');
+        successPopup.style.display = 'block';
+        setTimeout(() => { successPopup.style.display = 'none'; }, 2400);
 
-    // Form submit
-    function sendOrderToSheet(event) {
-      event.preventDefault();
-      const orderForm = document.getElementById('orderForm');
-      const submitButton = document.getElementById('submitBtn');
-      const originalButtonText = submitButton.textContent;
-      if (!document.getElementById('productInput').value) {
-        alert('กรุณาเลือกเฉดสีก่อนค่ะ!');
-        return;
-      }
-      submitButton.disabled = true;
-      submitButton.textContent = 'กำลังส่งข้อมูล...';
-      const formData = new FormData(orderForm);
-      const phoneField = orderForm.querySelector('#phone');
-      if (phoneField && phoneField.value && !phoneField.value.startsWith("'")) {
-        formData.set('phone', "'" + phoneField.value);
-      }
-      formData.set("order_id", 'ORD-' + Date.now());
-      fetch(GOOGLE_SHEET_WEB_APP_URL, {
-        method: "POST", body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-        if (data.result === 'success') {
-          closeModal();
-          orderForm.reset();
-          document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-          document.getElementById('productInput').value = '';
-          // Popup success
-          const successPopup = document.getElementById('successPopup');
-          successPopup.style.display = 'block';
-          setTimeout(() => { successPopup.style.display = 'none'; }, 2400);
-
-          // Trigger All Purchase Pixels
-          if(window.fbq) fbq('track', 'Purchase', {value: 390.00, currency: 'THB'});
-          if(window.ttq) ttq.track('CompletePayment', {
-            contents: [{content_id:'WM-CONCEALER',content_type:'product',quantity:1}],
-            value: 390.00,
-            currency: 'THB'
+        // Trigger All Purchase Pixels
+        if(window.fbq) fbq('track', 'Purchase', {value: 390.00, currency: 'THB'});
+        if(window.ttq) ttq.track('CompletePayment', {
+          contents: [{content_id:'WM-CONCEALER',content_type:'product',quantity:1}],
+          value: 390.00,
+          currency: 'THB'
+        });
+        if(window.gtag) {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17035064059/53zPCNHE2OIaEPvl-bo_',
+            'value': 390.00,
+            'currency': 'THB'
           });
-          if(window.gtag) {
-            gtag('event', 'conversion', {
-              'send_to': 'AW-17035064059/53zPCNHE2OIaEPvl-bo_',
-              'value': 390.00,
-              'currency': 'THB'
-            });
-          }
-        } else {
-          alert('เกิดข้อผิดพลาด: ' + (data.message || 'ไม่ทราบสาเหตุ'));
         }
-      })
-      .catch(err => {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-        alert("เกิดข้อผิดพลาดในการส่งข้อมูล: " + err.message);
-        console.error("Fetch Error:", err);
-      });
-    }
-  </script>
+      } else {
+        alert('เกิดข้อผิดพลาด: ' + (data.message || 'ไม่ทราบสาเหตุ'));
+      }
+    })
+    .catch(err => {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+      alert("เกิดข้อผิดพลาดในการส่งข้อมูล: " + err.message);
+      console.error("Fetch Error:", err);
+    });
+  }
+</script>
 </body>
 </html>
